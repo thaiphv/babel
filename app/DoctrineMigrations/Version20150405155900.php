@@ -30,7 +30,6 @@ CREATE TABLE person (
     activation_code_expires_at DATETIME NOT NULL,
     created_time DATETIME NOT NULL,
     updated_time DATETIME NOT NULL,
-    UNIQUE INDEX UNIQ_34DCD176E9B4F45E (mobile_number),
     PRIMARY KEY(id)
 ) DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE = InnoDB;
 SQL
@@ -42,5 +41,6 @@ SQL
      */
     public function down(Schema $schema)
     {
+        $this->abortIf($this->connection->getDatabasePlatform()->getName() != 'mysql', 'Migration can only be executed safely on \'mysql\'.');
     }
 }

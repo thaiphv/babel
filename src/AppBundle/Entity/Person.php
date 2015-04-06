@@ -11,7 +11,7 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\PersonRepository")
  * @ORM\Table(name="person")
  * @ORM\HasLifecycleCallbacks()
  */
@@ -39,7 +39,7 @@ class Person {
     protected $email;
 
     /**
-     * @ORM\Column(type="string", length=32, name="mobile_number", nullable=false, unique=true)
+     * @ORM\Column(type="string", length=32, name="mobile_number", nullable=false)
      */
     protected $mobileNumber;
 

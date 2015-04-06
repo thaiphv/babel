@@ -1,3 +1,10 @@
-app:
-    resource: "@AppBundle/Controller/"
+default_controller:
+    resource: "@AppBundle/Controller/DefaultController.php"
     type:     annotation
+    prefix: "/"
+
+api_controllers:
+    resource: "@AppBundle/Controller/Api/"
+    type:     annotation
+    prefix: "/api"
+

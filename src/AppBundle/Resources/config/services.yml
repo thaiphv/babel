@@ -1,0 +1,19 @@
+services:
+    api_exception_listener:
+        class: AppBundle\Listener\ApiExceptionListener
+        tags:
+          - { name: kernel.event_listener, event: kernel.exception, method: onKernelException, priority: 200 }
+
+    clicksend_service:
+        class: AppBundle\Service\ClickSendService
+        arguments: ["%clicksend_username%", "%clicksend_apikey%"]
+
+    messaging_service:
+        class: AppBundle\Service\MessagingService
+        arguments: ["@clicksend_service"]
+
+    api_auth_listener:
+        class: AppBundle\Listener\ApiAuthListener
+        arguments: ["%api_keys%"]
+        tags:
+            - { name: kernel.event_listener, event: kernel.controller, method: onKernelController }
